@@ -28,6 +28,11 @@ public class AllEmailSamples {
 			{ "abc.100@abc.co.au", true },
 			{ "abc@gmail.com.com", true }, 
 			{ "abc100@gmail.com", true }, 
+			{"abc@.com", false}, 
+			{"abc1+@-com", false}, 
+			{"abc=@=abc.com", false},
+			{".abc@abc.comabc", false},
+			{"abc+10@#.com", false}
 			});
 	}
 
