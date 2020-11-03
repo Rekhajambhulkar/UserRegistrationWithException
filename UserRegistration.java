@@ -33,4 +33,20 @@ public class UserRegistration {
 		boolean isLastNameInvalid = user.checkLastName("jambhulkar");
 		Assert.assertFalse(isLastNameInvalid);
 	}
+
+	// Test Case for EmailId return True
+	@Test
+	public void checkingEmailId() {
+		UserValidator user = new UserValidator();
+		boolean isEmailId = user.checkEmailId("jambhulkarrekha@gmail.com");
+		Assert.assertTrue(isEmailId);
+	}
+
+	// Test Case for EmailId return False
+	@Test
+	public void checkingEmailIdInvalidMustReturnFalse() {
+		UserValidator user = new UserValidator();
+		boolean isEmailId = user.checkEmailId(".jambhulkarrekha@111");
+		Assert.assertFalse(isEmailId);
+	}
 }
