@@ -18,4 +18,9 @@ public class UserValidator {
                 return (emailId.matches("^[a-zA-Z]{1,}?[A-Za-z0-9]{0,1}+([-.+]{0,1}+[a-zA-Z0-9]{1,}){0,1}"
 			+ "+@+[a-zA-Z0-9]{1,}?([-._]{0,1}+[a-zA-Z0-9]{2,}){0,1}?([-._]{0,1}" + "+[a-zA-Z]{2,}){0,1}"));
         }
+
+	// Function for Checking the MobileNo
+	public boolean checkMobileNo(String MobileNo) {
+		return (MobileNo.matches("^[0-9]{1,2}[ ][0-9]{10}$"));
+	}
 }
