@@ -68,17 +68,17 @@ public class UserRegistration {
 
 	// Test Case for Password return True
 	@Test
-	public void checkingPassWord_MinimumEightCharacter_ReturnTrue() {
+	public void checkingPassWord_OneUpperCaseLetter_ReturnTrue() {
 		UserValidator user = new UserValidator();
-		boolean isPassWordValid = user.checkPassWord("rekhajambhulkar");
+		boolean isPassWordValid = user.checkPassWord("Rekhajambhulkar");
 		Assert.assertTrue(isPassWordValid);
 	}
 
 	// Test Case for Password return False
 	@Test
-	public void checkingPassWord_WhenNoMinimumEightCharacter_ReturnFalse() {
+	public void checkingPassWord_whenNoOneUpperCaseLetter_ReturnFalse() {
 		UserValidator user = new UserValidator();
-		boolean isPassWordInvalid = user.checkPassWord("riya");
+		boolean isPassWordInvalid = user.checkPassWord("riyajambhulkar");
 		Assert.assertFalse(isPassWordInvalid);
 	}
 }
