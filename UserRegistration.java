@@ -81,4 +81,20 @@ public class UserRegistration {
 		boolean isPassWordInvalid = user.checkPassWord("riyajambhulkar");
 		Assert.assertFalse(isPassWordInvalid);
 	}
+
+	//Test case for mood analyzer return HAPPY
+	@Test
+	public void moodAnalyser_ReturnHappy() {
+		UserValidator user = new UserValidator();
+		String isMoodHappy = user.moodAnalyse("Rekha", "Jambhulkar", "jambhulkarrekha@gmail.com", "91 9822626490", "Rekha@123" );
+		Assert.assertEquals("HAPPY", isMoodHappy);
+	}
+	
+	//Test case for mood analyzer return SAD
+	@Test
+	public void moodAnalyser_ReturnSAD() {
+		UserValidator user = new UserValidator();
+		String isMoodSad = user.moodAnalyse("riya", "jambhulkar", "jambhulkarrekha@+.com", "9822626490", "riya123" );
+		Assert.assertEquals("SAD", isMoodSad);
+	}
 }

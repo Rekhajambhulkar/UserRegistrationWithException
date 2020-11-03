@@ -29,4 +29,15 @@ public class UserValidator {
 	public boolean checkPassWord(String Password) {
 		return (Password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[#@$^+=&%])" + "(?=\\S+$).{8,}$"));
 	}
+
+	//Function for Checking Mood id HAPPY OR SAD
+	public String moodAnalyse(String fName, String Lname, String emailId, String MobileNo, String Password) {
+		if (checkFirstname(fName) == true && checkLastName(Lname) == true && checkEmailId(EmailId) == true
+				&& checkMobileNo(MobileNo) == true && checkPassWord(Password)) 
+		{
+			return "HAPPY";
+		} else {
+			return "SAD";
+		}
+	}
 }
