@@ -68,15 +68,15 @@ public class UserRegistration {
 
 	// Test Case for Password return True
 	@Test
-	public void checkingPassWord_OneUpperCaseLetter_ReturnTrue() {
+	public void checkingPassWord_OneNumericNumber_ReturnTrue() {
 		UserValidator user = new UserValidator();
-		boolean isPassWordValid = user.checkPassWord("Rekhajambhulkar");
+		boolean isPassWordValid = user.checkPassWord("Rekhajambhulkar1");
 		Assert.assertTrue(isPassWordValid);
 	}
 
 	// Test Case for Password return False
 	@Test
-	public void checkingPassWord_whenNoOneUpperCaseLetter_ReturnFalse() {
+	public void checkingPassWord_whenNoOneNumericNumber_ReturnFalse() {
 		UserValidator user = new UserValidator();
 		boolean isPassWordInvalid = user.checkPassWord("riyajambhulkar");
 		Assert.assertFalse(isPassWordInvalid);

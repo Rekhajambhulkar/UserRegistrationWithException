@@ -26,6 +26,6 @@ public class UserValidator {
 
 	// Function for Checking the PassWord
 	public boolean checkPassWord(String Password) {
-		return (Password.matches("^[a-zA-Z]{8,}$"));
+		return (Password.matches("^[a-zA-Z0-9]{8,}$"));
 	}
 }
