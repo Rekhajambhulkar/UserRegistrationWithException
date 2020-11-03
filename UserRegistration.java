@@ -38,31 +38,47 @@ public class UserRegistration {
 	@Test
 	public void checkingEmailId() {
 		UserValidator user = new UserValidator();
-		boolean isEmailId = user.checkEmailId("jambhulkarrekha@gmail.com");
-		Assert.assertTrue(isEmailId);
+		boolean isEmailIdValid = user.checkEmailId("jambhulkarrekha@gmail.com");
+		Assert.assertTrue(isEmailIdValid);
 	}
 
 	// Test Case for EmailId return False
 	@Test
 	public void checkingEmailIdInvalidMustReturnFalse() {
 		UserValidator user = new UserValidator();
-		boolean isEmailId = user.checkEmailId(".jambhulkarrekha@111");
-		Assert.assertFalse(isEmailId);
+		boolean isEmailIdInvalid = user.checkEmailId(".jambhulkarrekha@111");
+		Assert.assertFalse(isEmailIdInvalid);
 	}
 
 	// Test Case for MobileNo return True
 	@Test
 	public void checkingMobileNo() {
 		UserValidator user = new UserValidator();
-		boolean isMobileNo = user.checkMobileNo("91 9138124143");
-		Assert.assertTrue(isMobileNo);
+		boolean isMobileNoValid = user.checkMobileNo("91 9138124143");
+		Assert.assertTrue(isMobileNoValid);
 	}
 
 	// Test Case for MobileNo return False
 	@Test
 	public void checkingMobileNoInvalidMustReturnFalse() {
 		UserValidator user = new UserValidator();
-		boolean isMobileNo = user.checkMobileNo("656965241");
-		Assert.assertFalse(isMobileNo);
+		boolean isMobileNoInvalid = user.checkMobileNo("656965241");
+		Assert.assertFalse(isMobileNoInvalid);
+	}
+
+	// Test Case for Password return True
+	@Test
+	public void checkingPassWord_MinimumEightCharacter_ReturnTrue() {
+		UserValidator user = new UserValidator();
+		boolean isPassWordValid = user.checkPassWord("rekhajambhulkar");
+		Assert.assertTrue(isPassWordValid);
+	}
+
+	// Test Case for Password return False
+	@Test
+	public void checkingPassWord_WhenNoMinimumEightCharacter_ReturnFalse() {
+		UserValidator user = new UserValidator();
+		boolean isPassWordInvalid = user.checkPassWord("riya");
+		Assert.assertFalse(isPassWordInvalid);
 	}
 }
