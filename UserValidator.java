@@ -1,43 +1,104 @@
 package com.bridgelabz.uservalidator;
 
-public class UserValidator {
+public class UserValidator extends Exception {
+	private static String FirstName = "^[A-Z][a-z]{3,}";
+	private static String LastName = "^[A-Z][a-z]{3,}";
+	private static String MobileNo = "^[0-9]{1,2}[ ][0-9]{10}$";
 	private static String EmailId = "^[a-zA-Z]{1,}?[A-Za-z0-9]{0,1}+([-.+]{0,1}+[a-zA-Z0-9]{1,}){0,1}"
 			+ "+@+[a-zA-Z0-9]{1,}?([-._]{0,1}+[a-zA-Z0-9]{2,}){0,1}?([-._]{0,1}" + "+[a-zA-Z]{2,}){0,1}";
+	private static String PassWord = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[#@$^+=&%])" + "(?=\\S+$).{8,}$";
 
 	// Function for Checking the FirstName
-	public boolean checkFirstname(String fName) {
-		return (fName.matches("^[A-Z][a-z]{3,}"));
-
+	public String checkFirstName(String fName) throws InvalidExceptions {
+		try {
+			if (FirstName.matches(FirstName)) {
+				return "Succes";
+			} else {
+				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
+						"Please entered Valid firstname");
+			}
+		} catch (NullPointerException e) {
+			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
+					"Please don't entered null value");
+		}
 	}
 
 	// Function for Checking the LastName
-	public boolean checkLastName(String Lname) {
-		return (Lname.matches("^[A-Z][a-z]{3,}"));
+	public String checkLastName(String LName) throws InvalidExceptions {
+		try {
+			if (LName.matches(LastName)) {
+				return "Succes";
+			} else {
+				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
+						"Please entered Valid Lastname");
+			}
+		} catch (NullPointerException e) {
+			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL, "Please entered Valid LastName");
+		}
 	}
 
 	// Function for Checking the EmailId
-        public boolean checkEmailId(String emailId) {
-                return (emailId.matches("EmailId"));
-        }
+	public String checkEmailId(String EmailId) throws InvalidExceptions {
+		try {
+			if (EmailId.matches(EmailId)) {
+				return "Succes";
+			} else {
+				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
+						"Please entered Valid EmailId");
+			}
+		} catch (NullPointerException e) {
+			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
+					"Please don't entered null value");
+		}
+	}
 
 	// Function for Checking the MobileNo
-	public boolean checkMobileNo(String MobileNo) {
-		return (MobileNo.matches("^[0-9]{1,2}[ ][0-9]{10}$"));
+	public String checkMobileNo(String mobileNo) throws InvalidExceptions {
+
+		try {
+			if (mobileNo.matches(MobileNo)) {
+				return "Succes";
+			} else {
+				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
+						"Please entered Valid MobileNo");
+			}
+		} catch (NullPointerException e) {
+			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
+					"Please don't entered null value");
+		}
 	}
 
 	// Function for Checking the PassWord
-	public boolean checkPassWord(String Password) {
-		return (Password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[#@$^+=&%])" + "(?=\\S+$).{8,}$"));
+	public String checkPassWord(String Password) throws InvalidExceptions {
+		try {
+			if (Password.matches(PassWord)) {
+				return "Succes";
+			} else {
+				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
+						"Please entered Valid Password");
+			}
+		} catch (NullPointerException e) {
+			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
+					"Please don't entered null value");
+
+		}
 	}
 
-	//Function for Checking Mood id HAPPY OR SAD
-	public String moodAnalyse(String fName, String Lname, String emailId, String MobileNo, String Password) {
-		if (checkFirstname(fName) == true && checkLastName(Lname) == true && checkEmailId(EmailId) == true
-				&& checkMobileNo(MobileNo) == true && checkPassWord(Password)) 
-		{
-			return "HAPPY";
-		} else {
-			return "SAD";
+	// Function for Checking Mood is HAPPY OR SAD
+	public String moodAnalyse(String fName, String Lname, String EmailId, String MobileNo, String Password)
+			throws Exception {
+		try {
+			if (checkFirstName(fName) == "Success" && checkLastName(Lname) == "Success"
+					&& checkEmailId(EmailId) == "Success" && checkMobileNo(MobileNo) == "Success"
+					&& checkPassWord(Password) == "Success") {
+				return "HAPPY";
+			} else {
+				return "SAD";
+			}
+		} catch (NullPointerException e) {
+			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
+					"Please don't entered null value");
 		}
 	}
 }
+
