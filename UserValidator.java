@@ -1,6 +1,22 @@
 package com.bridgelabz.uservalidator;
 
-public class UserValidator extends Exception {
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+//Interface
+interface patternInterface {
+	boolean validPattern(String key, String value);
+}
+
+public class UserValidator {
+	patternInterface LambdaPatternCheck = (String key, String value) -> {
+		Pattern pattern = Pattern.compile(key);
+		Matcher match = pattern.matcher(value);
+
+		boolean result = match.matches();
+		return (result);
+	};
+
 	private static String FirstName = "^[A-Z][a-z]{3,}";
 	private static String LastName = "^[A-Z][a-z]{3,}";
 	private static String MobileNo = "^[0-9]{1,2}[ ][0-9]{10}$";
@@ -8,96 +24,61 @@ public class UserValidator extends Exception {
 			+ "+@+[a-zA-Z0-9]{1,}?([-._]{0,1}+[a-zA-Z0-9]{2,}){0,1}?([-._]{0,1}" + "+[a-zA-Z]{2,}){0,1}";
 	private static String PassWord = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[#@$^+=&%])" + "(?=\\S+$).{8,}$";
 
+	int Analyzer = 0;
+	private boolean LambdaPatternCheck(String key, String value) {
+		return true;
+	}
 	// Function for Checking the FirstName
-	public String checkFirstName(String fName) throws InvalidExceptions {
+	public boolean checkFirstName(String fName) {
 		try {
-			if (FirstName.matches(FirstName)) {
-				return "Succes";
-			} else {
-				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
-						"Please entered Valid firstname");
-			}
-		} catch (NullPointerException e) {
-			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
-					"Please don't entered null value");
+			boolean result= LambdaPatternCheck(FirstName,fName);
+			return result;
+			} 
+		catch (NullPointerException e) {
+			return false;
 		}
 	}
 
 	// Function for Checking the LastName
-	public String checkLastName(String LName) throws InvalidExceptions {
+	public boolean checkLastName(String LName) {
 		try {
-			if (LName.matches(LastName)) {
-				return "Succes";
-			} else {
-				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
-						"Please entered Valid Lastname");
-			}
-		} catch (NullPointerException e) {
-			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL, "Please entered Valid LastName");
+			boolean result= LambdaPatternCheck(LastName,LName);
+			return result;
+			} 
+		catch (NullPointerException e) {
+			return false;
 		}
 	}
-
 	// Function for Checking the EmailId
-	public String checkEmailId(String EmailId) throws InvalidExceptions {
+	public boolean checkEmailId(String emailId) {
 		try {
-			if (EmailId.matches(EmailId)) {
-				return "Succes";
-			} else {
-				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
-						"Please entered Valid EmailId");
-			}
-		} catch (NullPointerException e) {
-			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
-					"Please don't entered null value");
+			boolean result= LambdaPatternCheck(EmailId,emailId);
+			return result;
+			} 
+		catch (NullPointerException e) {
+			return false;
 		}
 	}
 
 	// Function for Checking the MobileNo
-	public String checkMobileNo(String mobileNo) throws InvalidExceptions {
-
+	public boolean checkMobileNo(String mobileNo) {
 		try {
-			if (mobileNo.matches(MobileNo)) {
-				return "Succes";
-			} else {
-				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
-						"Please entered Valid MobileNo");
-			}
-		} catch (NullPointerException e) {
-			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
-					"Please don't entered null value");
+			boolean result= LambdaPatternCheck(MobileNo,mobileNo);
+			return result;
+			} 
+		catch (NullPointerException e) {
+			return false;
 		}
 	}
 
 	// Function for Checking the PassWord
-	public String checkPassWord(String Password) throws InvalidExceptions {
+	public boolean checkPassword(String password) {
 		try {
-			if (Password.matches(PassWord)) {
-				return "Succes";
-			} else {
-				throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_INVALID,
-						"Please entered Valid Password");
-			}
-		} catch (NullPointerException e) {
-			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
-					"Please don't entered null value");
-
-		}
-	}
-
-	// Function for Checking Mood is HAPPY OR SAD
-	public String moodAnalyse(String fName, String Lname, String EmailId, String MobileNo, String Password)
-			throws Exception {
-		try {
-			if (checkFirstName(fName) == "Success" && checkLastName(Lname) == "Success"
-					&& checkEmailId(EmailId) == "Success" && checkMobileNo(MobileNo) == "Success"
-					&& checkPassWord(Password) == "Success") {
-				return "HAPPY";
-			} else {
-				return "SAD";
-			}
-		} catch (NullPointerException e) {
-			throw new InvalidExceptions(InvalidExceptions.ExceptionType.ENTERED_NULL,
-					"Please don't entered null value");
+			boolean result= LambdaPatternCheck(PassWord,password);
+			return result;
+			} 
+		catch (NullPointerException e) {
+			return false;
 		}
 	}
 }
