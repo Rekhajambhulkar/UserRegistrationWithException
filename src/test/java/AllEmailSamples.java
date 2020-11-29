@@ -39,6 +39,6 @@ public class AllEmailSamples {
 	@Test
 	public void givenEmailValidMustRetrunResult() {
 		UserValidator user = new UserValidator();
-		Assert.assertEquals(expectedResult, user.checkEmailId(emailTest));
+		Assert.assertEquals(expectedResult, user.validEmail(emailTest));
 	}
 } 
